@@ -16,6 +16,21 @@ function Toggle({ title, children, open: o = false }) {
 }
 const Img = ({ src, fallback }) => { const [bad, setBad] = useState(false); return bad ? <div className="img-fb">{fallback}</div> : <img src={src} alt="" onError={() => setBad(true)} /> }
 
+function Typer({ words }) {
+  const [i, setI] = useState(0), [n, setN] = useState(0), [del, setDel] = useState(false)
+  const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
+  useEffect(() => {
+    if (reduce) { const t = setInterval(() => setI(x => (x + 1) % words.length), 2600); return () => clearInterval(t) }
+    const w = words[i]; let t
+    if (!del && n < w.length) t = setTimeout(() => setN(n + 1), 55)
+    else if (!del) t = setTimeout(() => setDel(true), 1700)
+    else if (n > 0) t = setTimeout(() => setN(n - 1), 28)
+    else { setDel(false); setI((i + 1) % words.length) }
+    return () => clearTimeout(t)
+  }, [n, del, i, words, reduce])
+  return <span className="typer" aria-hidden="true">{reduce ? words[i] : words[i].slice(0, n)}<span className="caret" /></span>
+}
+
 export default function App() {
   const [theme, setTheme] = useState(() => localStorage.getItem('portfolio-theme') || 'light')
   const [top, setTop] = useState(false)
@@ -29,18 +44,26 @@ export default function App() {
       <nav>{['about', 'projects', 'achievements', 'contact'].map(s => <a key={s} href={`#${s}`}>{s}</a>)}
         <button className="icon-btn" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label="Toggle theme">{theme === 'dark' ? <FiSun /> : <FiMoon />}</button></nav>
     </header>
-    <div className="cover" />
+    <div className="cover" role="img" aria-label="Abstract AI network cover" />
     <main className="doc">
-      <div className="avatar"><Img src={personal.profileImage} fallback="AH" /></div>
-      <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>{personal.name}</motion.h1>
-      <p className="subtitle">{personal.role} · {personal.university}</p>
-      <div className="props">
-        <div><span>📍 Location</span><b>{personal.location}</b></div>
-        <div><span>✉️ Email</span><a href={`mailto:${personal.email}`}>{personal.email}</a></div>
-        <div><span>🏷️ Roles</span><p className="tags">{hero.roles.map(r => <em key={r}>{r}</em>)}</p></div>
-      </div>
-      <div className="callout"><span className="ci">{hero.greeting.match(/\p{Extended_Pictographic}/u)?.[0] || '👋'}</span><div><b>{hero.greeting}</b><p>{hero.tagline}</p>
-        <div className="btns"><a className="btn primary" href="#projects">View My Work</a><a className="btn" href={hero.cv} download><FiDownload /> Download CV</a><a className="btn" href="#contact"><FiMail /> Contact Me</a></div></div></div>
+      <section className="hero">
+        <div className="hero-top">
+          <div className="avatar-ring"><div className="avatar"><Img src={personal.profileImage} fallback="AH" /></div><span className="status-dot" title="Open to opportunities" /></div>
+          <div className="hero-actions">
+            {socials.map(([n, u, I]) => ok(u) && <a key={n} className="icon-btn soc" href={u} target="_blank" rel="noreferrer" aria-label={n}><I /></a>)}
+            <a className="icon-btn soc" href={social.email} aria-label="Email"><FiMail /></a>
+          </div>
+        </div>
+        <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>{personal.name}</motion.h1>
+        <p className="typing" aria-label={[personal.role, ...hero.roles].join(', ')}><span className="typing-pre">›</span> <Typer words={[personal.role, ...hero.roles]} /></p>
+        <p className="subtitle">🎓 {personal.university} <i>·</i> 📍 {personal.location}</p>
+        <div className="props">
+          <div><span>✉️ Email</span><a href={`mailto:${personal.email}`}>{personal.email}</a></div>
+          <div><span>🏷️ Roles</span><p className="tags">{hero.roles.map(r => <em key={r}>{r}</em>)}</p></div>
+        </div>
+        <div className="callout hero-callout"><span className="ci">{hero.greeting.match(/\p{Extended_Pictographic}/u)?.[0] || '👋'}</span><div><b>{hero.greeting}</b><p>{hero.tagline}</p>
+          <div className="btns"><a className="btn primary" href="#projects">View My Work</a><a className="btn" href={hero.cv} download><FiDownload /> Download CV</a><a className="btn" href="#contact"><FiMail /> Contact Me</a></div></div></div>
+      </section>
       <div className="stats">{stats.map(s => <Fade key={s.label} className="stat"><b>{s.value}</b><span>{s.label}</span></Fade>)}</div>
 
       <div className="cols">

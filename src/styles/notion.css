@@ -91,6 +91,26 @@ footer{margin-top:64px}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
 .cal{direction:rtl}.cal>*{direction:ltr}
+/* ===== Header v3 ===== */
+.cover{height:280px;background:url(/assets/cover.jpg) center/cover no-repeat,linear-gradient(120deg,#e8defa,#d6ebf7)}
+.cover:after{inset:0;height:auto;opacity:1;background:linear-gradient(180deg,rgba(255,255,255,0) 55%,var(--bg) 100%)}
+[data-theme=dark] .cover{background:url(/assets/cover.jpg) center/cover no-repeat,#1d1d22}
+[data-theme=dark] .cover:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,14,24,.55),rgba(25,25,25,.75))}
+.hero{position:relative}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-end}
+.avatar-ring{position:relative;margin-top:-80px;width:max-content;padding:4px;border-radius:50%;background:conic-gradient(from 200deg,#a78bfa,#60a5fa,#f9a8d4,#a78bfa);box-shadow:0 10px 30px -8px rgba(80,60,160,.35);z-index:1}
+.avatar-ring .avatar{margin:0;border:4px solid var(--bg);width:140px;height:140px}
+.status-dot{position:absolute;right:14px;bottom:14px;width:18px;height:18px;border-radius:50%;background:#22c55e;border:3px solid var(--bg)}
+.hero-actions{display:flex;gap:6px;padding-bottom:8px}.soc{border:1px solid var(--line);background:var(--card);box-shadow:var(--shadow);width:36px;height:36px;border-radius:10px;transition:all .2s var(--ease);text-decoration:none}.soc:hover{transform:translateY(-2px);color:var(--acc);border-color:var(--acc)}
+.hero h1{margin:18px 0 4px}
+.typing{margin:0 0 8px;font-size:1.2rem;font-weight:600;min-height:1.8em;color:var(--acc);font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:-.01em}.typing-pre{color:var(--mut)}
+.caret{display:inline-block;width:2px;height:1.05em;margin-left:3px;vertical-align:-2px;background:currentColor;animation:blink 1s steps(1) infinite}@keyframes blink{50%{opacity:0}}
+.hero .subtitle{font-size:15px;display:flex;flex-wrap:wrap;gap:4px 8px}.hero .subtitle i{font-style:normal;opacity:.5}
+.hero .props{margin-bottom:18px}
+.hero-callout{background:linear-gradient(135deg,color-mix(in srgb,var(--acc) 7%,var(--soft)),var(--soft))}
+@media(max-width:560px){.cover{height:180px}.avatar-ring{margin-top:-60px}.avatar-ring .avatar{width:104px;height:104px}.status-dot{right:8px;bottom:8px;width:15px;height:15px}.typing{font-size:1rem}.hero-actions{padding-bottom:4px}.soc{width:32px;height:32px}}
+
+@media(max-width:560px){.hero .props>div{grid-template-columns:1fr;gap:2px}.hero .props>div+div{margin-top:6px}}
 /* Sticky left column: stops at its end while the right column keeps scrolling */
 html,body{overflow-x:clip}
 @media(min-width:861px){.cols>aside{position:sticky;bottom:24px;align-self:end}}
