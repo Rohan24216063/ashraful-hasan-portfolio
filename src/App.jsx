@@ -64,8 +64,12 @@ export default function App() {
           <div><span className="plabel">✉️ Email</span><EmailPill email={personal.email} /></div>
           <div><span className="plabel">🏷️ Roles</span><p className="rtags">{hero.roles.map((r, i) => <em key={r} className={`rt c${i % 8}`}>{roleIcon(r)}{r}</em>)}</p></div>
         </div>
-        <div className="callout hero-callout"><span className="ci">{hero.greeting.match(/\p{Extended_Pictographic}/u)?.[0] || '👋'}</span><div><b>{hero.greeting}</b><p>{hero.tagline}</p>
-          <div className="btns"><a className="btn primary" href="#projects">View My Work</a><a className="btn" href={hero.cv} download><FiDownload /> Download CV</a><a className="btn" href="#contact"><FiMail /> Contact Me</a></div></div></div>
+        <div className="intro">
+          <div className="intro-head"><span className="intro-badge"><Ic k="hand" s={20} /></span><h2>{hero.greeting.replace(/\p{Extended_Pictographic}|\uFE0F|\p{Emoji_Modifier}/gu, '').trim()}</h2></div>
+          <p className="intro-text">{hero.tagline}</p>
+          <div className="intro-chips">{[['cpu', 'AI', /\bAI\b/], ['code', 'Software', /software/i], ['radio', 'IoT & Sensors', /IoT/]].filter(c => c[2].test(hero.tagline)).map(([k, l]) => <span key={l} className="ichip"><Ic k={k} s={14} />{l}</span>)}</div>
+          <div className="intro-btns"><a className="ibtn primary" href="#projects">View My Work <Ic k="arrow" s={16} /></a><a className="ibtn" href={hero.cv} download><Ic k="down" s={16} /> Download CV</a><a className="ibtn" href="#contact"><Ic k="mail" s={16} /> Contact Me</a></div>
+        </div>
       </section>
       <div className="stats">{stats.map(s => <Fade key={s.label} className="stat"><b>{s.value}</b><span>{s.label}</span></Fade>)}</div>
 
@@ -120,6 +124,12 @@ const RI = {
   flask: <><path d="M10 2v7.5L4.5 19A2 2 0 0 0 6.2 22h11.6a2 2 0 0 0 1.7-3L14 9.5V2"/><path d="M8.5 2h7M7 16h10"/></>,
   pin: <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></>,
   ext: <><path d="M7 17 17 7"/><path d="M7 7h10v10"/></>,
+  hand: <><path d="M18 11V6a2 2 0 0 0-4 0v5"/><path d="M14 10V4a2 2 0 0 0-4 0v6"/><path d="M10 10.5V6a2 2 0 0 0-4 0v8"/><path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.9-6-2.4l-3.6-3.6a2 2 0 0 1 2.8-2.8L7 15"/></>,
+  code: <><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></>,
+  radio: <><path d="M4.9 19.1C1 15.2 1 8.8 4.9 4.9"/><path d="M7.8 16.2c-2.3-2.3-2.3-6.1 0-8.5"/><circle cx="12" cy="12" r="2"/><path d="M16.2 7.8c2.3 2.3 2.3 6.1 0 8.5"/><path d="M19.1 4.9C23 8.8 23 15.1 19.1 19"/></>,
+  arrow: <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>,
+  down: <><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></>,
+  mail: <><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></>,
   spark: <path d="M12 3l1.9 5.8L20 10.7l-5 3.6 1.9 5.7-4.9-3.5-4.9 3.5L9 14.3l-5-3.6 6.1-1.9z"/>,
 }
 function Ic({ k, s = 15 }) {
