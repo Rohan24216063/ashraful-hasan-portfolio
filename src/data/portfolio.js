@@ -1,0 +1,76 @@
+export const portfolio = {
+  personal: {
+    name: 'Ashraful Hasan',
+    role: 'AI/ML & Backend Developer',
+    location: 'Dhaka, Bangladesh',
+    email: 'ashrafulhasan4018@gmail.com',
+    university: 'Daffodil International University',
+    profileImage: '/assets/profile.jpg',
+  },
+  hero: {
+    greeting: 'Hi There! 👋🏻',
+    tagline: `I'm a 3rd-year Computing and Information System (CIS) student at Daffodil International University, Bangladesh. I build real-world solutions with AI, software, IoT and sensors, and enjoy turning complex problems into practical products.`,
+    roles: ['CIS Student @ DIU', 'AI/ML Enthusiast', 'Spring Boot Developer', 'Backend Developer', 'Problem Solver', 'Researcher in Progress'],
+    cv: '/assets/Ashraful_Hasan_CV.pdf',
+  },
+  social: {
+    github: 'https://github.com/Rohan24216063',
+    linkedin: '[MY_LINKEDIN_URL]',
+    facebook: '[MY_FACEBOOK_URL]',
+    email: 'mailto:ashrafulhasan4018@gmail.com',
+  },
+  stats: [
+    { value: '02', label: 'Competition Awards' },
+    { value: '05+', label: 'Projects Built' },
+    { value: '01', label: 'Research Project' },
+    { value: '2024', label: 'CIS Journey Started' },
+  ],
+  about: {
+    text: `I'm Ashraful Hasan from Bangladesh, and I study B.Sc. in Computing and Information System at Daffodil International University. I'm interested in problem solving, system architecture, backend engineering and artificial intelligence. I build full-stack applications using technologies such as Java Spring Boot, React and SQL databases. Currently, I'm diving deeper into Artificial Intelligence, Machine Learning, Deep Learning and research. My long-term goal is to build technology-driven solutions that solve meaningful real-world problems for people and communities.`,
+    builds: [
+      ['AI-Powered Applications', 'Building software that uses AI to solve practical problems.'],
+      ['Backend Systems', 'Designing APIs, business logic and database-driven applications.'],
+      ['Full-Stack Applications', 'Connecting modern interfaces with scalable backend systems.'],
+      ['Real-World Solutions', 'Turning real-world problems into practical software products.'],
+    ],
+    cares: ['Problem Solving', 'System Architecture', 'Artificial Intelligence', 'Research', 'Social Impact', 'Continuous Learning'],
+    outsideCoding: ['Solving real-world problems', 'Joining technology competitions', 'Participating in hackathons', 'Learning new technologies', 'Exploring AI and emerging technologies'],
+  },
+  skills: {
+    'Programming Languages': ['C', 'Java', 'Python', 'JavaScript'],
+    Backend: ['Java', 'Spring Boot', 'REST APIs', 'JPA / Hibernate', 'JWT'],
+    Frontend: ['React', 'HTML', 'CSS', 'React Bootstrap'],
+    Databases: ['MySQL', 'PostgreSQL', 'Microsoft SQL Server'],
+    'AI / Data': ['NumPy', 'Pandas', 'Machine Learning|Currently Learning', 'Deep Learning|Currently Learning'],
+    'Core Computer Science': ['Data Structures', 'Algorithms', 'Object-Oriented Programming', 'Problem Solving', 'Database Fundamentals', 'System Architecture'],
+  },
+  tools: ['Cursor', 'Visual Studio Code', 'IntelliJ IDEA', 'Git', 'GitHub', 'Postman'],
+  githubUsername: 'Rohan24216063',
+  achievements: [
+    { title: '🥈 Runner-up — DIU AI Project Competition 2026', team: 'Bit Builders', event: 'Academic Department', date: 'July 11, 2026', organization: 'Daffodil International University', description: 'Out of 145 projects, our team was selected as one of the 12 winning teams.', image: '/assets/achievements/ai-project-2026.jpg' },
+    { title: '🏆 AI Fest 2025 — Project Showcase', event: 'Project Showcase', date: 'December 1, 2025', organization: 'DIU CIS Club', description: 'Project details will be added soon.', image: '/assets/achievements/ai-fest-2025.jpg' },
+  ],
+  timeline: [
+    ['July 2024', 'Started B.Sc. in Computing and Information System', 'Daffodil International University'],
+    ['2025', 'Expanded full-stack development skills', 'Spring Boot · React · SQL databases'],
+    ['December 2025', 'AI Fest 2025', 'DIU CIS Club'],
+    ['July 2026', 'Runner-up', 'DIU AI Project Competition 2026 · Team Bit Builders'],
+    ['Fall 2026 — Now', 'Learning AI/ML and Deep Learning', 'Exploring research · Building real-world AI solutions · Working on a Dhaka traffic-jam solution'],
+  ],
+  projects: [
+    { name: '[AI Project Competition 2026 Project Name]', badge: '🥈 Award Winning', description: 'Project description will be added when available.', tech: [], image: '/assets/projects/project-01.webp', featured: true },
+    { name: 'Dhaka Traffic Jam Solution', badge: '🚧 In Progress', description: 'An emerging project focused on exploring data-driven and AI-assisted approaches to help address traffic congestion challenges in Dhaka.', tech: ['To be finalized'], image: '/assets/projects/project-02.webp' },
+    { name: '[AI Fest 2025 Project Name]', badge: 'Project Showcase', description: '[AI Fest 2025 Description]', tech: [], image: '/assets/projects/project-03.webp' },
+    { name: '[Spring Boot / React Project]', badge: 'Prototype', description: 'Project details will be added when available.', tech: ['Java', 'Spring Boot', 'React', 'MySQL'], image: '/assets/projects/project-04.webp' },
+  ],
+  research: {
+    topic: '[CURRENT RESEARCH TOPIC]',
+    learning: [['Machine Learning', 'Currently Learning'], ['Deep Learning', 'Currently Learning'], ['Linear Algebra', 'Exploring'], ['Probability', 'Exploring'], ['Data Analysis', 'Developing'], ['English Communication', 'Developing']],
+    exploring: ['AI / Machine Learning', 'Deep Learning', 'Data-driven Applications', 'System Architecture', 'Research', 'Real-world Technology Solutions'],
+  },
+  resume: { file: '/assets/Ashraful_Hasan_CV.pdf', updated: 'October 2026' },
+  contact: {
+    formspreeId: '[MY_FORMSPREE_ID]',
+    openTo: ['Software Development Opportunities', 'AI/ML Projects', 'Research Collaboration', 'Hackathons & Competitions', 'Innovative Technology Projects', 'Internship / Career Opportunities'],
+  },
+}
