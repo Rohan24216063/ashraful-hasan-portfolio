@@ -15,8 +15,8 @@ export const portfolio = {
   },
   social: {
     github: 'https://github.com/Rohan24216063',
-    linkedin: '[MY_LINKEDIN_URL]',
-    facebook: '[MY_FACEBOOK_URL]',
+    linkedin: 'https://www.linkedin.com/in/ashraful-hasan-58b202337/',
+    facebook: 'https://www.facebook.com/AshrafulHasan1699',
     email: 'mailto:ashrafulhasan4018@gmail.com',
   },
   stats: [
