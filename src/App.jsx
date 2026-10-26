@@ -16,6 +16,9 @@ function Toggle({ title, icon, children, open: o = false }) {
 }
 const Img = ({ src, fallback }) => { const [bad, setBad] = useState(false); return bad ? <div className="img-fb">{fallback}</div> : <img src={src} alt="" onError={() => setBad(true)} /> }
 
+const initials = n => (n.replace(/[\[\]\/]/g, ' ').split(/\s+/).filter(w => /^[A-Za-z0-9]/.test(w)).slice(0, 2).map(w => w[0]).join('') || 'P').toUpperCase()
+const ProjImg = ({ src, name }) => { const [bad, setBad] = useState(!src); return bad ? <div className="pfb"><span>{initials(name)}</span></div> : <img src={src} alt={`${name.replace(/[\[\]]/g, '')} project cover`} loading="lazy" decoding="async" onError={() => setBad(true)} /> }
+
 function Typer({ words }) {
   const [i, setI] = useState(0), [n, setN] = useState(0), [del, setDel] = useState(false)
   const reduce = typeof matchMedia !== 'undefined' && matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -94,7 +97,7 @@ export default function App() {
 
           <Fade><H icon="cal">My Journey</H><div className="journey">{timeline.map(([d, t, x]) => <div className="exp" key={d + t}><div className="dot" /><div><b>{t}</b> <span className="date">({d})</span><p>{x}</p></div></div>)}</div></Fade>
 
-          <Fade><H icon="rocket" id="projects">Projects</H><div className="gallery">{projects.map((p, i) => <Fade delay={i * .05} className="card gcard" key={p.name}><div className="gimg"><Img src={p.image} fallback={['🤖', '🚦', '🧠', '☕'][i % 4]} /></div><div className="gbody"><b><Ph>{p.name}</Ph></b><span className="pill">{p.badge}</span><p><Ph>{p.description}</Ph></p>{p.tech.length > 0 && <div className="tags">{p.tech.map(t => <em key={t}>{t}</em>)}</div>}{(p.github || p.live) && <div className="btns">{p.github && <a className="btn" href={p.github}><FaGithub /> GitHub</a>}{p.live && <a className="btn" href={p.live}><FiExternalLink /> Live</a>}</div>}</div></Fade>)}</div></Fade>
+          <Fade><H icon="rocket" id="projects">Projects</H><div className="gallery">{projects.map((p, i) => <Fade delay={i * .05} className="card gcard" key={p.name}><div className="gimg"><ProjImg src={p.image} name={p.name} /></div><div className="gbody"><b><Ph>{p.name}</Ph></b><span className="pill">{p.badge}</span><p><Ph>{p.description}</Ph></p>{p.tech.length > 0 && <div className="tags">{p.tech.map(t => <em key={t}>{t}</em>)}</div>}{(p.github || p.live) && <div className="btns">{p.github && <a className="btn" href={p.github}><FaGithub /> GitHub</a>}{p.live && <a className="btn" href={p.live}><FiExternalLink /> Live</a>}</div>}</div></Fade>)}</div></Fade>
 
           <Fade><H icon="trophy" id="achievements">Achievements</H>{achievements.map(a => <div className="card ach" key={a.title}><div className="aimg"><Img src={a.image} fallback="🏅" /></div><div><b>{a.title}</b><div className="meta"><span>📅 {a.date}</span><span>🏛️ {a.organization}</span><span>🎪 {a.event}</span>{a.team && <span>👥 {a.team}</span>}</div><p>{a.description}</p></div></div>)}</Fade>
 

@@ -58,10 +58,10 @@ export const portfolio = {
     ['Fall 2026 — Now', 'Learning AI/ML and Deep Learning', 'Exploring research · Building real-world AI solutions · Working on a Dhaka traffic-jam solution'],
   ],
   projects: [
-    { name: '[AI Project Competition 2026 Project Name]', badge: '🥈 Award Winning', description: 'Project description will be added when available.', tech: [], image: '/assets/projects/project-01.webp', featured: true },
-    { name: 'Dhaka Traffic Jam Solution', badge: '🚧 In Progress', description: 'An emerging project focused on exploring data-driven and AI-assisted approaches to help address traffic congestion challenges in Dhaka.', tech: ['To be finalized'], image: '/assets/projects/project-02.webp' },
-    { name: '[AI Fest 2025 Project Name]', badge: 'Project Showcase', description: '[AI Fest 2025 Description]', tech: [], image: '/assets/projects/project-03.webp' },
-    { name: '[Spring Boot / React Project]', badge: 'Prototype', description: 'Project details will be added when available.', tech: ['Java', 'Spring Boot', 'React', 'MySQL'], image: '/assets/projects/project-04.webp' },
+    { name: '[AI Project Competition 2026 Project Name]', badge: '🥈 Award Winning', description: 'Project description will be added when available.', tech: [], image: '/assets/projects/project1.jpg', featured: true },
+    { name: 'Dhaka Traffic Jam Solution', badge: '🚧 In Progress', description: 'An emerging project focused on exploring data-driven and AI-assisted approaches to help address traffic congestion challenges in Dhaka.', tech: ['To be finalized'], image: '/assets/projects/project2.jpg' },
+    { name: '[AI Fest 2025 Project Name]', badge: 'Project Showcase', description: '[AI Fest 2025 Description]', tech: [], image: '/assets/projects/project3.jpg' },
+    { name: '[Spring Boot / React Project]', badge: 'Prototype', description: 'Project details will be added when available.', tech: ['Java', 'Spring Boot', 'React', 'MySQL'], image: '/assets/projects/project4.jpg' },
   ],
   research: {
     topic: '[CURRENT RESEARCH TOPIC]',
