@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import { GitHubCalendar } from 'react-github-calendar'
-import { FiMail, FiMapPin, FiDownload, FiMoon, FiSun, FiChevronRight, FiExternalLink, FiArrowUp } from 'react-icons/fi'
+import { FiMail, FiMapPin, FiDownload, FiMoon, FiSun, FiChevronRight, FiExternalLink, FiArrowUp, FiCopy, FiCheck } from 'react-icons/fi'
 import { FaGithub, FaLinkedinIn, FaFacebookF } from 'react-icons/fa'
 import { portfolio as P } from './data/portfolio'
 import './styles/notion.css'
@@ -56,10 +56,13 @@ export default function App() {
         </div>
         <motion.h1 initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>{personal.name}</motion.h1>
         <p className="typing" aria-label={[personal.role, ...hero.roles].join(', ')}><span className="typing-pre">›</span> <Typer words={[personal.role, ...hero.roles]} /></p>
-        <p className="subtitle">🎓 {personal.university} <i>·</i> 📍 {personal.location}</p>
-        <div className="props">
-          <div><span>✉️ Email</span><a href={`mailto:${personal.email}`}>{personal.email}</a></div>
-          <div><span>🏷️ Roles</span><p className="tags">{hero.roles.map(r => <em key={r}>{r}</em>)}</p></div>
+        <p className="subtitle hmeta">
+          <a className="meta-chip mc-uni" href="https://daffodilvarsity.edu.bd/" target="_blank" rel="noopener noreferrer"><Ic k="cap" />{personal.university}<Ic k="ext" s={12} /></a>
+          <a className="meta-chip mc-loc" href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(personal.location)}`} target="_blank" rel="noopener noreferrer"><Ic k="pin" />{personal.location}<Ic k="ext" s={12} /></a>
+        </p>
+        <div className="props props2">
+          <div><span className="plabel">✉️ Email</span><EmailPill email={personal.email} /></div>
+          <div><span className="plabel">🏷️ Roles</span><p className="rtags">{hero.roles.map((r, i) => <em key={r} className={`rt c${i % 8}`}>{roleIcon(r)}{r}</em>)}</p></div>
         </div>
         <div className="callout hero-callout"><span className="ci">{hero.greeting.match(/\p{Extended_Pictographic}/u)?.[0] || '👋'}</span><div><b>{hero.greeting}</b><p>{hero.tagline}</p>
           <div className="btns"><a className="btn primary" href="#projects">View My Work</a><a className="btn" href={hero.cv} download><FiDownload /> Download CV</a><a className="btn" href="#contact"><FiMail /> Contact Me</a></div></div></div>
@@ -106,4 +109,39 @@ export default function App() {
     </main>
     {top && <button className="icon-btn totop" onClick={() => scrollTo({ top: 0, behavior: 'smooth' })} aria-label="Back to top"><FiArrowUp /></button>}
   </div>
+}
+
+const RI = {
+  cap: <><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/><path d="M22 10v6"/></>,
+  cpu: <><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></>,
+  leaf: <><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></>,
+  server: <><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><path d="M6 6h.01M6 18h.01"/></>,
+  puzzle: <path d="M15.39 4.39a1 1 0 0 0 1.68-.474 2.5 2.5 0 1 1 3.014 3.015 1 1 0 0 0-.474 1.68l1.683 1.682a2.414 2.414 0 0 1 0 3.414L19.61 15.39a1 1 0 0 1-1.68-.474 2.5 2.5 0 1 0-3.014 3.015 1 1 0 0 1 .474 1.68l-1.683 1.682a2.414 2.414 0 0 1-3.414 0L8.61 19.61a1 1 0 0 0-1.68.474 2.5 2.5 0 1 1-3.014-3.015 1 1 0 0 0 .474-1.68l-1.683-1.682a2.414 2.414 0 0 1 0-3.414L4.39 8.61a1 1 0 0 1 1.68.474 2.5 2.5 0 1 0 3.014-3.015 1 1 0 0 1-.474-1.68l1.683-1.682a2.414 2.414 0 0 1 3.414 0z"/>,
+  flask: <><path d="M10 2v7.5L4.5 19A2 2 0 0 0 6.2 22h11.6a2 2 0 0 0 1.7-3L14 9.5V2"/><path d="M8.5 2h7M7 16h10"/></>,
+  pin: <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></>,
+  ext: <><path d="M7 17 17 7"/><path d="M7 7h10v10"/></>,
+  spark: <path d="M12 3l1.9 5.8L20 10.7l-5 3.6 1.9 5.7-4.9-3.5-4.9 3.5L9 14.3l-5-3.6 6.1-1.9z"/>,
+}
+function Ic({ k, s = 15 }) {
+  return <svg className={`ri ri-${k}`} viewBox="0 0 24 24" width={s} height={s} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{RI[k]}</svg>
+}
+function roleIcon(r) {
+  const t = r.toLowerCase()
+  const k = /student|diu/.test(t) ? 'cap' : /ai|ml/.test(t) ? 'cpu' : /spring/.test(t) ? 'leaf' : /backend/.test(t) ? 'server' : /problem/.test(t) ? 'puzzle' : /research/.test(t) ? 'flask' : 'spark'
+  return <svg className="ri" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{RI[k]}</svg>
+}
+
+function EmailPill({ email }) {
+  const [ok, setOk] = useState(false)
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(email) } catch { const t = document.createElement('textarea'); t.value = email; document.body.appendChild(t); t.select(); document.execCommand('copy'); t.remove() }
+    setOk(true); setTimeout(() => setOk(false), 1600)
+  }
+  return (
+    <span className="epill">
+      <a href={`mailto:${email}`} className="epill-main"><span className="epill-ic"><FiMail /></span><span className="epill-addr">{email}</span></a>
+      <button type="button" className={`epill-copy${ok ? ' ok' : ''}`} onClick={copy} aria-label="Copy email">{ok ? <><FiCheck /> Copied!</> : <><FiCopy /> Copy</>}</button>
+      <span className="sr-only" aria-live="polite">{ok ? 'Email copied' : ''}</span>
+    </span>
+  )
 }
